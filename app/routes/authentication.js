@@ -12,5 +12,4 @@ module.exports = function (app, passport) {
       failureRedirect: '/login',
     })
   );
-
 }
