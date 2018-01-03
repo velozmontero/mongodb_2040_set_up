@@ -39,6 +39,13 @@ input {
   padding: 15px;
   font-size: 20px;
   background-color: rgba(0,0,0,0);
+  cursor: pointer;
+}
+
+.form-btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgb(75, 228, 255);
+  border-color: rgb(75, 228, 255);
 }
 
 .btn:hover {
@@ -52,7 +59,11 @@ input {
 }
 
 .login-screen {
-  background-color: #00c3ff
+  background: url('../images/login_background.jpg') no-repeat;
+}
+
+.signup-screen {
+  background: url('../images/signup_background.jpg') no-repeat;
 }
 
 .container{
