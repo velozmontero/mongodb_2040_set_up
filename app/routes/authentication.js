@@ -3,7 +3,6 @@ module.exports = function (app, passport) {
     passport.authenticate('local-signup', {
       successRedirect: '/login',
       failureRedirect: '/signup',
-      failureFlash: true
     })
   );
 
@@ -11,7 +10,6 @@ module.exports = function (app, passport) {
     passport.authenticate('local-login', {
       successRedirect: '/',
       failureRedirect: '/login',
-      failureFlash: true
     })
   );
 
