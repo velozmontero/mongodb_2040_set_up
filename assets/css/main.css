@@ -1,10 +1,17 @@
 body {
+  height: 100vh;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  background-size: cover;
 }
 
 a {
   text-decoration: none;
+  color: #fff;
+}
+
+a:hover {
+  color: rgb(0, 179, 255);
 }
 
 input {
@@ -12,6 +19,29 @@ input {
   padding: 10px 20px;
   font-size: 25px;
   margin: 10px;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.40),  rgba(0,0,0,0));
+  border: none;
+}
+
+.navbar-link {
+  padding: 15px 15px;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 .title {
@@ -34,7 +64,6 @@ input {
 
 .form-btn {
   margin: 10px;
-  width: 200px;
   padding: 15px;
   font-size: 20px;
   background-color: rgba(0,0,0,0);
@@ -53,7 +82,19 @@ input {
   border-color: rgb(75, 228, 255);
 }
 
+.password-reset-screen {
+  background: url('../images/background.jpg') no-repeat;
+}
+
+.password-recovery-screen {
+  background: url('../images/background.jpg') no-repeat;
+}
+
 .home-screen {
+  background: url('../images/background.jpg') no-repeat;
+}
+
+.profile-screen {
   background: url('../images/background.jpg') no-repeat;
 }
 
@@ -63,13 +104,4 @@ input {
 
 .signup-screen {
   background: url('../images/signup_background.jpg') no-repeat;
-}
-
-.wrapper{
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
 }

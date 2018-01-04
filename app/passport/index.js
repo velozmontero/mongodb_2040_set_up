@@ -99,7 +99,7 @@ module.exports = function (passport) {
               return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             }
 
-            else if (password !== req.body.verifypassword){
+            else if (password !== req.body.password_confirmation){
               return done(null, false, req.flash('signupMessage', 'Passwords do not match.'));
             }
             // if everything is good register the user information and wait for email verification
@@ -130,14 +130,14 @@ module.exports = function (passport) {
                   to: email,
                   from: 'Address Book',
                   subject: 'Email Verification',
-                  text: "Please click in link below to confirm your email or copy and paste in your browser url bar \n\n http://" + req.headers.host + "/admin-email-confirmation/" + emailHash,
-                  html: "<p>Please click in the link below to <br/><a href='http://" + req.headers.host + "/admin-email-confirmation/" + emailHash + "'>" +
+                  text: "Please click in link below to confirm your email or copy and paste in your browser url bar \n\n http://" + req.headers.host + "/email-confirmation/" + emailHash,
+                  html: "<p>Please click in the link below to <br/><a href='http://" + req.headers.host + "/email-confirmation/" + emailHash + "'>" +
                     "confirm email address" +
                     "</a>\n\n</p>"
                 };
                 smtpTransport.sendMail(mailOptions);
                 //Sets it to false to redirect the user to the login page.
-                return done(null, newUser, req.flash('signupMessage', 'A verification has been sent to '+email));
+                return done(null, newUser, req.flash('loginMessage', 'A verification email has been sent to '+email));
               });
             }
           });

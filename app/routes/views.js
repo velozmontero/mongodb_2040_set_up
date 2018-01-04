@@ -51,6 +51,11 @@ module.exports = function (app) {
     req.logout();
     res.redirect('/');
   });
+
+  app.get('/password-recovery', function (req, res) {
+    res.render('password_recovery.ejs', { message: req.flash('passwordRecoveryMessage') });
+  });
+
 };
 
 // route middleware to make sure a user is logged in

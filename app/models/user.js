@@ -9,6 +9,8 @@ var userSchema = mongoose.Schema({
   name: { type: String, trim: true },
   emailConfirmed: {type: Boolean, default: false},
   emailConfirmationToken: String,
+  resetPasswordToken: String,
+  resetPasswordExpires: Number
 });
 
 // generating a hash
