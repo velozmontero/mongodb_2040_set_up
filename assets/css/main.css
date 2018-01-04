@@ -65,7 +65,7 @@ input {
   background: url('../images/signup_background.jpg') no-repeat;
 }
 
-.container{
+.wrapper{
   background-size: cover;
   display: flex;
   justify-content: center;

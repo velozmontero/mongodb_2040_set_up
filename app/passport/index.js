@@ -50,27 +50,17 @@ module.exports = function (passport) {
 
           // if no user is found, return the message
           else if (!user) {
-            return done(null, false, {
-              success: false,
-              message: 'No user found.'
-            });
+            return done(null, false, req.flash('loginMessage', 'No user found.'));
           }
 
           // if password is invalid, return message
           else if (!user.validPassword(password)) {
-            return done(null, false, {
-              success: false,
-              message: 'Oops! Wrong password.'
-            });
+            return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
           }
 
           // if email hasn't been confirmed, return message
           else if (!user.isEmailConfirmed()) {
-            return done(null, false, {
-              success: false,
-              email: user.email,
-              message: 'Your email has not been confirmed yet.'
-            });
+            return done(null, false, req.flash('loginMessage', 'Your email has not been confirmed yet.'));
           }
 
           // all is well, return user
@@ -106,12 +96,12 @@ module.exports = function (passport) {
 
             // check to see if theres already a user with that email
             if (user) {
-              return done(null, false, {
-                success: false,
-                message: 'That email is already taken.'
-              });
+              return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             }
 
+            else if (password !== req.body.verifypassword){
+              return done(null, false, req.flash('signupMessage', 'Passwords do not match.'));
+            }
             // if everything is good register the user information and wait for email verification
             else {
 
@@ -138,8 +128,8 @@ module.exports = function (passport) {
                 });
                 var mailOptions = {
                   to: email,
-                  from: 'Email Confirmation',
-                  subject: 'Verification Code',
+                  from: 'Address Book',
+                  subject: 'Email Verification',
                   text: "Please click in link below to confirm your email or copy and paste in your browser url bar \n\n http://" + req.headers.host + "/admin-email-confirmation/" + emailHash,
                   html: "<p>Please click in the link below to <br/><a href='http://" + req.headers.host + "/admin-email-confirmation/" + emailHash + "'>" +
                     "confirm email address" +
@@ -147,40 +137,11 @@ module.exports = function (passport) {
                 };
                 smtpTransport.sendMail(mailOptions);
                 //Sets it to false to redirect the user to the login page.
-                return done(null, newUser, {
-                  success: true,
-                  message: 'A verification email has been sent to ' + email
-                });
+                return done(null, newUser, req.flash('signupMessage', 'A verification has been sent to '+email));
               });
             }
           });
           // if the user is logged in but has no local account...
-        } else if (!req.user.email) {
-          // ...presumably they're trying to connect a local account
-          // BUT let's check if the email used to connect a local account is being used by another user
-          User.findOne({
-            'email': email
-          }, function (err, user) {
-            if (err)
-              return done(err);
-
-            if (user) {
-              return done(null, false, {
-                message: 'That email is already taken.'
-              });
-              // Using 'loginMessage instead of signupMessage because it's used by /connect/local'
-            } else {
-              var user = req.user;
-              user.email = email;
-              user.password = user.generateHash(password);
-              user.save(function (err) {
-                if (err)
-                  return done(err);
-
-                return done(null, user);
-              });
-            }
-          });
         } else {
           // user is logged in and already has a local account. Ignore signup. (You should log out before trying to create a new account, user!)
 

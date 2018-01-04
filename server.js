@@ -6,12 +6,14 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var session = require('express-session');
+var flash = require('connect-flash');
 var mongo = require('./config')();
-
+var morgan = require('morgan');
 var passport = require('passport');
 
 require('./app/passport')(passport); // pass passport for configuration
 
+app.use(morgan('dev')); // log every request to the console
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 //purpose of this is to enable cross domain requests
@@ -32,6 +34,8 @@ app.use(session({
     secure: false
   }
 }));
+
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
