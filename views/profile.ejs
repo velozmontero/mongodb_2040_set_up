@@ -23,13 +23,16 @@
   <nav class="navbar navbar-light bg-light">
   
     <img class="logo" src="/assets/images/logo.png" alt="logo">
-    
-    <a class="navbar-link" href="/update-profile">Edit Profile</a>
-    <a class="navbar-link" href="/logout">Logout</a>
+
+    <div class="navbar-links">
+      <a class="navbar-link" href="/update-profile">Edit Profile</a>
+      <a class="navbar-link" href="/logout">Logout</a>
+    </div>
+
   </nav>
   <div class='wrapper'>
     <div class="title"> Hi <%= user.name.split(' ')[0] %>!</div>
-    <p><%= user.email %></p>
+    <a href="/address-book">GO TO @BOOK <i class="fa fa-arrow-right icon-small" aria-hidden="true"></i></a>
   </div>
 
   <!-- Scripts -->
