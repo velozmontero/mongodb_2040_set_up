@@ -19,22 +19,12 @@
   <link rel="shortcut icon" type="image/png" href="/assets/images/logo.png">
 </head>
 
-<body class="profile-screen">
-  <nav class="navbar navbar-light bg-light">
-
-    <img class="logo" src="/assets/images/logo.png" alt="logo">
-
-    <a class="navbar-link" href="/logout">Logout</a>
-    <a class="navbar-link" href="/profile">Profile</a>
-  </nav>
+<body class='not-found-screen'>
   <div class='wrapper'>
-    <input type="text" placeholder="name" name="name" id="name" value="<%= user.name %>" />
-    <input type="text" placeholder="Email" name="email" id="email" value="<%= user.email %>" />
-    <input type="password" placeholder="Password" name="password" id="password" />
-    <input type="password" placeholder="New Password" name="new_password" id="new_password" />
-    <input type="password" placeholder="Confirm New Password" name="new_password_confirmation" id="new_password_confirmation"
-    />
-    <button class="form-btn" type="submit"> Update Profile </button>
+    <h1 class="title">404</h1>
+    <a href="/">
+      <div class="btn">GO BACK</div>
+    </a>
   </div>
 
   <!-- Scripts -->

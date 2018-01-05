@@ -16,6 +16,12 @@ module.exports = function (app, passport) {
     failureFlash: true // allow flash messages
   }));
 
+  app.post('/update-profile', passport.authenticate('local-profile-update', {
+    successRedirect: '/update-profile',
+    failureRedirect: '/update-profile', 
+    failureFlash: true // allow flash messages
+  }));
+
   // =============================================================================
   // CONFIRM EMAIL              ==================================================
   // =============================================================================

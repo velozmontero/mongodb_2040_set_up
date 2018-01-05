@@ -154,7 +154,7 @@ module.exports = function (passport) {
   // =========================================================================
   // LOCAL PROFILE UPDATE  ===================================================
   // =========================================================================
-  passport.use('local-user-profile-update', new LocalStrategy({
+  passport.use('local-profile-update', new LocalStrategy({
     // by default, local strategy uses username and password, we will override with email
     usernameField: 'email',
     passwordField: 'password',
@@ -167,23 +167,16 @@ module.exports = function (passport) {
       process.nextTick(function () {
         // if the user is not already logged in:
         if (!req.user) {
-          return done(null, false, {
-            success: false,
-            message: "You must be logged in to update your profile information"
-          });
+          return done(null, false, req.flash('updateProfileMessage', 'You must be logged in to update your profile information.'));
         }
         // if password is invalid, return message
-        if (!req.user.validPassword(password)) {
-          return done(null, false, {
-            verified: true,
-            message: 'Oops! Wrong password.'
-          });
+        else if (!req.user.validPassword(password)) {
+          return done(null, false, req.flash('updateProfileMessage', 'Oops! Wrong password.'));
         }
 
         else {
           var user = req.user;
-
-          if (req.body.newPassword && req.body.confirmNewPassword && req.body.newPassword === req.body.confirmNewPassword) {
+          if (req.body.new_password && req.body.new_password_confirmation && req.body.new_password === req.body.new_password_confirmation) {
             user.password = user.generateHash(req.body.newPassword);
           }
 
@@ -193,10 +186,8 @@ module.exports = function (passport) {
             if (err)
               return done(err);
 
-            return done(null, user, {
-              success: true,
-              message: "Profile updated successfully!"
-            });
+            return done(null, user, req.flash('updateProfileMessage', 'Profile updated successfully!'));
+            
           });
         }
       });

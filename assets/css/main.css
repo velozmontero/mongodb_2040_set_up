@@ -2,7 +2,6 @@ body {
   height: 100vh;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background-size: cover;
 }
 
 a {
@@ -95,25 +94,36 @@ p {
 }
 
 .password-reset-screen {
-  background: url('../images/background.jpg') no-repeat;
+  background: url('../images/reset_background.jpg') no-repeat;
+  background-size: cover;
 }
 
 .password-recovery-screen {
-  background: url('../images/background.jpg') no-repeat;
+  background: url('../images/password_recovery.jpg') no-repeat;
+  background-size: cover;
 }
 
 .home-screen {
   background: url('../images/background.jpg') no-repeat;
+  background-size: cover;
 }
 
 .profile-screen {
-  background: url('../images/background.jpg') no-repeat;
+  background: url('../images/profile_background.jpg') no-repeat;
+  background-size: cover;
 }
 
 .login-screen {
   background: url('../images/login_background.jpg') no-repeat;
+  background-size: cover;
 }
 
 .signup-screen {
   background: url('../images/signup_background.jpg') no-repeat;
+  background-size: cover;
+}
+
+.not-found-screen {
+  background: url('../images/404.jpg') no-repeat;
+  background-size: cover;
 }

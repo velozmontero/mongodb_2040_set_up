@@ -56,11 +56,15 @@ module.exports = function (app) {
     res.render('password_recovery.ejs', { message: req.flash('passwordRecoveryMessage') });
   });
 
-  app.get('/edit-profile', isLoggedIn, function (req, res) {
-    res.render('edit_profile.ejs', { 
+  app.get('/update-profile', isLoggedIn, function (req, res) {
+    res.render('update_profile.ejs', { 
       user: req.user,
-      message: req.flash('editProfileMessage') 
+      message: req.flash('updateProfileMessage') 
     });
+  });
+
+  app.get('*', function (req, res) {
+    res.render('404.ejs');
   });
 
 };
