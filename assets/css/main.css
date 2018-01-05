@@ -21,6 +21,11 @@ input {
   margin: 10px;
 }
 
+p {
+  color: #fff;
+  font-size: 18px;
+}
+
 .wrapper{
   display: flex;
   justify-content: center;
