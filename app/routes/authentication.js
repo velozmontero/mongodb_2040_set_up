@@ -154,7 +154,7 @@ module.exports = function (app, passport) {
               req.flash('passwordRecoveryMessage', 'No user found with that email.')
               return res.redirect('/password-recovery');
             }
-            else if (req.body.new_password !== req.body.password_confirmation){
+            else if (req.body.new_password !== req.body.new_password_confirmation){
               req.flash('passwordResetMessage', 'Passwords do not match.')
               res.render('password_reset.ejs', { message: req.flash('passwordResetMessage') });
             }
