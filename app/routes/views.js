@@ -17,7 +17,6 @@ module.exports = function (app) {
   // =====================================
   // show the login form
   app.get('/login', function (req, res) {
-
     // render the page and pass in any flash data if it exists
     res.render('login.ejs', { message: req.flash('loginMessage') });
   });
@@ -30,7 +29,6 @@ module.exports = function (app) {
   // =====================================
   // show the signup form
   app.get('/signup', function (req, res) {
-
     // render the page and pass in any flash data if it exists
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   });
@@ -76,7 +74,6 @@ module.exports = function (app) {
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
-
   // if user is authenticated in the session, carry on 
   if (req.isAuthenticated())
     return next();

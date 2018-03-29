@@ -5,15 +5,13 @@ var LocalStrategy = require('passport-local').Strategy;
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 
-const User = require('../models/user');
+var User = require('../models/user');
 
 module.exports = function (passport) {
 
-  // =========================================================================
-  // passport session setup ==================================================
-  // =========================================================================
-  // required for persistent login sessions
-  // passport needs ability to serialize and unserialize users out of session
+  // ===============================================
+  // passport session setup 
+  // ==================================================
 
   // used to serialize the user for the session
   passport.serializeUser(function (user, done) {
@@ -126,6 +124,7 @@ module.exports = function (passport) {
                     pass: 'fviclass2017'
                   }
                 });
+                
                 var mailOptions = {
                   to: email,
                   from: 'Address Book',
@@ -135,9 +134,10 @@ module.exports = function (passport) {
                     "confirm email address" +
                     "</a>\n\n</p>"
                 };
+
                 smtpTransport.sendMail(mailOptions);
                 //Sets it to false to redirect the user to the login page.
-                return done(null, newUser, req.flash('loginMessage', 'A verification email has been sent to '+email));
+                return done(null, newUser, req.flash('loginMessage', 'A verification email has been sent to ' + email));
               });
             }
           });
@@ -169,6 +169,7 @@ module.exports = function (passport) {
         if (!req.user) {
           return done(null, false, req.flash('updateProfileMessage', 'You must be logged in to update your profile information.'));
         }
+
         // if password is invalid, return message
         else if (!req.user.validPassword(password)) {
           return done(null, false, req.flash('updateProfileMessage', 'Oops! Wrong password.'));
@@ -177,7 +178,7 @@ module.exports = function (passport) {
         else {
           var user = req.user;
           if (req.body.new_password && req.body.new_password_confirmation && req.body.new_password === req.body.new_password_confirmation) {
-            user.password = user.generateHash(req.body.newPassword);
+            user.password = user.generateHash(req.body.new_password);
           }
 
           user.name = req.body.name;
@@ -193,3 +194,7 @@ module.exports = function (passport) {
       });
     }));
 };
+
+
+
+
