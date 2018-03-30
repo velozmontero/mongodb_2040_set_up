@@ -8,6 +8,35 @@ module.exports = function (app) {
       res.redirect('/profile');
     }
     else {
+      // var v = {
+      //   fname: 'Frank',
+      //   lname: 'Veloz'
+      // };
+       
+      // var s = `
+      //   <div>
+      //     <h2> {{ fname }} {{ lname }} Techlaunching in </h2>
+      //     <%= function(){
+      //       var s =''; 
+      //       for(var i = 10; i--;){
+      //         s+='<div>'+i+'</div>';
+      //       }; 
+      //       return s;
+      //     } %>
+      //   </div>
+      // `;
+
+      // function interprate(s) {
+      //   let operations = s.replace(/\n|\r|\s{2,}/g, ' ')
+      //     .replace(/\{\{(\s*\w+\s*)\}\}/g, (m, c) => v[c.trim()])
+      //     .replace(/<%=(.*)%>/g, (m, f) => eval("(" + f + ")")());
+
+      //   console.log('operations ', operations);
+
+      //   return operations;
+      // }
+
+      // res.send(interprate(s));
       res.render('index.ejs'); // load the index.ejs file
     }
   });
