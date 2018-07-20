@@ -170,9 +170,10 @@ module.exports = function (app, passport) {
               user.resetPasswordExpires = undefined;
 
               user.save(function (err) {
-                req.logIn(user, function (err) {
-                  done(err, user);
-                });
+                console.log(err);
+                // req.logIn(user, function (err) {
+                //   done(err, user);
+                // });
               });
             }
           });
@@ -194,7 +195,7 @@ module.exports = function (app, passport) {
         };
         smtpTransport.sendMail(mailOptions, function (err) {
           req.flash('loginMessage', 'Your password was succesfully reseted');
-          return res.redirect('/login');
+          res.redirect('/login');
           done(err);
         });
       }
